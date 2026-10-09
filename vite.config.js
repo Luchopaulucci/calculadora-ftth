@@ -4,9 +4,41 @@ import { defineConfig } from "vite";
 
 const root = dirname(fileURLToPath(import.meta.url));
 
+const PAGE_DIRS = [
+  "como-calcular-presupuesto-optico",
+  "perdidas-tipicas",
+  "glosario-ftth-gpon",
+  "preguntas-frecuentes",
+  "acerca-de",
+];
+
+/** Sirve /ruta → /ruta/index.html (sin fallback SPA a la home). */
+function mpaIndex() {
+  /** @param {import("vite").ViteDevServer} server */
+  const apply = (server) => {
+    server.middlewares.use((req, _res, next) => {
+      const raw = req.url ?? "";
+      const [pathname, query] = raw.split("?");
+      if (!pathname || pathname === "/" || pathname.includes(".")) return next();
+      const slug = pathname.replace(/\/$/, "").replace(/^\//, "");
+      if (!PAGE_DIRS.includes(slug)) return next();
+      const q = query ? `?${query}` : "";
+      req.url = `/${slug}/index.html${q}`;
+      next();
+    });
+  };
+  return {
+    name: "mpa-index",
+    configureServer: apply,
+    configurePreviewServer: apply,
+  };
+}
+
 export default defineConfig({
   root,
   publicDir: "public",
+  appType: "mpa",
+  plugins: [mpaIndex()],
   build: {
     outDir: "dist",
     emptyOutDir: true,
