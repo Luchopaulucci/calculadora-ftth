@@ -76,6 +76,17 @@ test("FAQPage JSON-LD con las 8 preguntas", () => {
   }
 });
 
+test("meta description de /perdidas-tipicas (meta, og y twitter)", () => {
+  const desc =
+    "Pérdidas típicas de splitters PLC (1:2 a 1:64), fibra por longitud de onda, empalmes y conectores SC/APC, más las clases GPON B+ y C+.";
+  const page = pageByPath("/perdidas-tipicas");
+  assert.equal(page.description, desc);
+  const html = renderPage(page);
+  assert.ok(html.includes(`<meta name="description" content="${desc}">`));
+  assert.ok(html.includes(`<meta property="og:description" content="${desc}">`));
+  assert.ok(html.includes(`<meta name="twitter:description" content="${desc}">`));
+});
+
 test("acerca-de no acredita autor y deja TODO", () => {
   const html = renderPage(pageByPath("/acerca-de"));
   assert.match(html, /TODO: Luciano decide si incluir crédito de autor/);

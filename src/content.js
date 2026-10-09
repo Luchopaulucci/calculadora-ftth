@@ -75,7 +75,7 @@ export const PAGES = [
     path: "/perdidas-tipicas",
     title: "Pérdidas típicas en FTTH: splitters, fibra, empalmes y conectores",
     description:
-      "Estos son los valores de referencia que usa la calculadora por defecto. Son típicos de mercado, no garantías: verificá siempre con el datasheet de cada componente y con mediciones de OTDR o power meter.",
+      "Pérdidas típicas de splitters PLC (1:2 a 1:64), fibra por longitud de onda, empalmes y conectores SC/APC, más las clases GPON B+ y C+.",
     h1: "Pérdidas típicas en una red FTTH / GPON",
     navLabel: "Pérdidas típicas",
   },
