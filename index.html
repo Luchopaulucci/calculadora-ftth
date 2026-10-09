@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de presupuesto óptico FTTH / GPON</title>
+<meta name="description" content="Calculá pérdidas por fibra, splitters, empalmes y conectores, y verificá si la potencia en la ONT entra en rango.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔦</text></svg>">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.dataset.theme=localStorage.theme||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')</script>
+</head>
+<body>
+<header>
+  <div><h1>Presupuesto óptico <span>FTTH</span></h1><p class="sub">Calculadora de pérdidas y potencia en la ONT para redes GPON</p></div>
+  <div class="hdr-btns"><button id="share" class="btn">🔗 Copiar link</button><button id="reset" class="btn">↺ Reiniciar</button><button id="theme" class="btn" aria-label="Cambiar tema">🌓</button></div>
+</header>
+<main>
+<form id="f" autocomplete="off">
+  <section class="card"><h2>OLT y clase óptica</h2>
+    <label>Clase <select name="cls"><option value="B+">GPON Clase B+</option><option value="C+">GPON Clase C+</option><option value="custom">Personalizada</option></select></label>
+    <div class="row"><label>TX mín (dBm)<input name="txMin" type="number" step="0.1"></label><label>TX máx (dBm)<input name="txMax" type="number" step="0.1"></label></div>
+    <div class="row"><label>Sensibilidad ONT (dBm)<input name="sens" type="number" step="0.1"></label><label>Saturación ONT (dBm)<input name="overload" type="number" step="0.1"></label></div>
+  </section>
+  <section class="card"><h2>Fibra</h2>
+    <label>Longitud de onda <select name="wl"><option value="1490">1490 nm (bajada GPON)</option><option value="1310">1310 nm (subida)</option><option value="1550">1550 nm (video RF)</option></select></label>
+    <div class="row"><label>Distancia (km)<input name="length" type="number" step="0.1" min="0"></label><label>Atenuación (dB/km)<input name="attenuation" type="number" step="0.01" min="0"></label></div>
+  </section>
+  <section class="card"><h2>Splitters PLC</h2>
+    <div id="splitters"></div>
+    <button type="button" id="addSp" class="btn small">+ Agregar etapa</button>
+  </section>
+  <section class="card"><h2>Empalmes, conectores y margen</h2>
+    <div class="grid3"><span></span><span class="th">Cantidad</span><span class="th">dB c/u</span>
+      <span>Fusión</span><input name="fusionCount" type="number" min="0" step="1" aria-label="Empalmes por fusión"><input name="fusionLoss" type="number" step="0.01" min="0" aria-label="Pérdida por fusión">
+      <span>Mecánicos</span><input name="mechCount" type="number" min="0" step="1" aria-label="Empalmes mecánicos"><input name="mechLoss" type="number" step="0.01" min="0" aria-label="Pérdida mecánico">
+      <span>Conectores SC/APC</span><input name="connCount" type="number" min="0" step="1" aria-label="Conectores"><input name="connLoss" type="number" step="0.01" min="0" aria-label="Pérdida conector">
+    </div>
+    <label>Margen de seguridad / envejecimiento (dB)<input name="margin" type="number" step="0.1" min="0"></label>
+  </section>
+</form>
+<aside id="out">
+  <section class="card verdict" id="verdict"></section>
+  <section class="card stats" id="stats"></section>
+  <section class="card"><h2>Desglose de pérdidas</h2><div id="bar" class="bar"></div><table id="tbl"></table></section>
+  <section class="card note"><strong>⚠️ Valores típicos.</strong> Los valores por defecto (potencias por clase según ITU-T G.984, atenuaciones, pérdidas de splitters, empalmes y conectores) son <em>típicos de referencia</em>. Verificalos siempre contra los datasheets de tu OLT, ONT, SFP, splitters y cable, y contra mediciones reales con OTDR / power meter. El "peor caso" usa TX mínimo e incluye el margen; la saturación se evalúa con TX máximo sin margen.</section>
+</aside>
+</main>
+<footer>Hecho por <strong>Luciano Paulucci</strong> · <a href="https://lucianopaulucci.com">lucianopaulucci.com</a></footer>
+<script type="module" src="app.js"></script>
+</body></html>

@@ -1,0 +1,2 @@
+{ "name": "ftth-calc", "version": "1.0.0", "type": "module", "private": true,
+  "scripts": { "test": "node --test test/*.test.js", "start": "python3 -m http.server 5173" } }
