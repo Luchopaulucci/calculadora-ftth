@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Acerca de la Calculadora FTTH</title>
+<meta name="description" content="La Calculadora FTTH es una herramienta gratuita en español para estimar el presupuesto óptico de redes GPON, pensada para técnicos, instaladores, ISP y estudiantes.">
+<link rel="canonical" href="https://lucianopaulucci.com/acerca-de">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Calculadora FTTH">
+<meta property="og:title" content="Acerca de la Calculadora FTTH">
+<meta property="og:description" content="La Calculadora FTTH es una herramienta gratuita en español para estimar el presupuesto óptico de redes GPON, pensada para técnicos, instaladores, ISP y estudiantes.">
+<meta property="og:url" content="https://lucianopaulucci.com/acerca-de">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Acerca de la Calculadora FTTH">
+<meta name="twitter:description" content="La Calculadora FTTH es una herramienta gratuita en español para estimar el presupuesto óptico de redes GPON, pensada para técnicos, instaladores, ISP y estudiantes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔦%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/src/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora FTTH","url":"https://lucianopaulucci.com/","description":"Calculá gratis el presupuesto óptico de una red FTTH/GPON: pérdidas por fibra, splitters, empalmes y conectores, potencia en la ONT, margen y distancia máxima.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"es","offers":{"@type":"Offer","price":0,"priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://lucianopaulucci.com/"},{"@type":"ListItem","position":2,"name":"Acerca de esta calculadora","item":"https://lucianopaulucci.com/acerca-de"}]}</script>
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;else document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}catch(e){document.documentElement.dataset.theme="dark";}})();</script>
+</head>
+<body class="subpage">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header>
+  <div class="brand-wrap">
+    <a class="brand" href="/">Presupuesto óptico <span>FTTH</span></a>
+    <p class="sub">Pérdidas y potencia en la ONT para redes GPON</p>
+  </div>
+  <button type="button" class="btn nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sitio-nav">Menú</button>
+  <nav id="sitio-nav" class="sitio-nav" aria-label="Principal"><ul><li><a href="/">Calculadora</a></li><li><a href="/como-calcular-presupuesto-optico">Cómo calcular</a></li><li><a href="/perdidas-tipicas">Pérdidas típicas</a></li><li><a href="/glosario-ftth-gpon">Glosario</a></li><li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li><li><a href="/acerca-de" aria-current="page">Acerca de</a></li></ul></nav>
+  <div class="hdr-btns"><button type="button" id="theme" class="btn" aria-label="Cambiar tema">🌓</button></div>
+</header>
+<main id="contenido">
+  <nav class="crumbs" aria-label="Miga de pan"><ol><li><a href="/">Inicio</a></li><li aria-current="page">Acerca de esta calculadora</li></ol></nav>
+  <article class="content prose">
+    <h1>Acerca de esta calculadora</h1>
+    
+<!-- TODO: Luciano decide si incluir crédito de autor en esta página -->
+<p>La Calculadora FTTH es una herramienta gratuita en español para estimar el presupuesto óptico de redes GPON. Está pensada para técnicos, instaladores, ISP y estudiantes que necesitan verificar rápido si un enlace va a funcionar antes de salir a campo.</p>
+<p><strong>Qué calcula:</strong> la pérdida por fibra, splitters PLC en varias etapas, empalmes y conectores, la RX en el peor caso, el nominal y el mejor caso, el margen remanente, el riesgo de saturación y la distancia máxima.</p>
+<p><strong>De dónde salen los valores:</strong> las clases ópticas siguen la ITU-T G.984.2. El resto son valores típicos de mercado y se pueden editar.</p>
+<p><strong>Privacidad:</strong> todo se calcula en tu navegador. No se guardan datos en ningún servidor; el estado queda solo en la URL que compartís.</p>
+<p><strong>Limitaciones:</strong> es una estimación. Siempre verificá con los datasheets y con mediciones reales.</p>
+  </article>
+</main>
+<footer>
+  <a href="https://lucianopaulucci.com">lucianopaulucci.com</a>
+</footer>
+<script type="module" src="/src/ui.js"></script>
+</body>
+</html>

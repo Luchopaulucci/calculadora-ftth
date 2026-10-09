@@ -1,0 +1,21 @@
+# Calculadora FTTH
+
+Calculadora gratuita en español del presupuesto óptico de redes FTTH/GPON.
+Estima pérdidas por fibra, splitters PLC, empalmes y conectores, la potencia en la ONT, el margen remanente y la distancia máxima.
+
+Sitio: https://lucianopaulucci.com
+Idioma: es
+Gratis, sin registro. Todo el cálculo corre en el navegador.
+
+## Páginas
+
+- https://lucianopaulucci.com/ — Calculadora de presupuesto óptico FTTH / GPON: Calculá gratis el presupuesto óptico de una red FTTH/GPON: pérdidas por fibra, splitters, empalmes y conectores, potencia en la ONT, margen y distancia máxima.
+- https://lucianopaulucci.com/como-calcular-presupuesto-optico — Cómo calcular el presupuesto óptico de una red FTTH: El presupuesto óptico es la diferencia entre la potencia que emite la OLT y la sensibilidad mínima de la ONT, y el enlace funciona si la suma de todas las pérdidas no la supera.
+- https://lucianopaulucci.com/perdidas-tipicas — Pérdidas típicas en una red FTTH / GPON: Estos son los valores de referencia que usa la calculadora por defecto. Son típicos de mercado, no garantías: verificá siempre con el datasheet de cada componente y con mediciones de OTDR o power meter.
+- https://lucianopaulucci.com/glosario-ftth-gpon — Glosario FTTH / GPON: Definiciones cortas de FTTH, GPON, OLT, ONT, splitter PLC, presupuesto óptico, dBm, sensibilidad, saturación y más términos de redes de fibra.
+- https://lucianopaulucci.com/preguntas-frecuentes — Preguntas frecuentes: Respuestas sobre potencia en la ONT, pérdida del splitter 1:32, saturación, clases B+ y C+, margen de seguridad, 1490 nm y si la calculadora reemplaza una medición.
+- https://lucianopaulucci.com/acerca-de — Acerca de esta calculadora: La Calculadora FTTH es una herramienta gratuita en español para estimar el presupuesto óptico de redes GPON, pensada para técnicos, instaladores, ISP y estudiantes.
+
+## Notas
+- Los valores por defecto son típicos de referencia (mercado). Las clases B+ y C+ siguen ITU-T G.984.2.
+- No reemplaza mediciones con power meter u OTDR.
