@@ -107,9 +107,6 @@ export function renderPage(page, opts = {}) {
   const example = opts.example || defaultResult();
   const url = canonicalUrl(page.path);
   const isHome = page.path === "/";
-  const calcBtns = isHome
-    ? `<button type="button" id="share" class="btn">🔗 Copiar link</button><button type="button" id="reset" class="btn">↺ Reiniciar</button>`
-    : "";
   const moduleScripts =
     opts.scripts === false
       ? ""
@@ -144,14 +141,15 @@ ${jsonLdBlocks(page)}
 </head>
 <body class="${bodyClass}">
 <a class="skip" href="#contenido">Saltar al contenido</a>
-<header>
-  <div class="brand-wrap">
-    <a class="brand" href="/">Presupuesto óptico <span>FTTH</span></a>
-    <p class="sub">Pérdidas y potencia en la ONT para redes GPON</p>
+<header class="site-header">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand-text">Presupuesto óptico </span><span>FTTH</span></a>
+    <button type="button" class="btn nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sitio-nav" aria-label="Abrir menú">
+      <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    ${navHtml(page)}
+    <div class="hdr-btns"><button type="button" id="theme" class="btn" aria-label="Cambiar tema" title="Cambiar tema">Tema</button></div>
   </div>
-  <button type="button" class="btn nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sitio-nav">Menú</button>
-  ${navHtml(page)}
-  <div class="hdr-btns">${calcBtns}<button type="button" id="theme" class="btn" aria-label="Cambiar tema">🌓</button></div>
 </header>
 <main id="contenido">
   ${crumbsHtml(page)}
@@ -160,8 +158,8 @@ ${jsonLdBlocks(page)}
     ${pageBody(page.path, example)}
   </article>
 </main>
-<footer>
-  <a href="${SITE_URL}">lucianopaulucci.com</a>
+<footer class="site-footer">
+  <p>Calculadora FTTH · presupuesto óptico GPON</p>
 </footer>
 ${moduleScripts}
 </body>

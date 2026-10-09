@@ -1,5 +1,6 @@
 import { CLASSES, WAVELENGTHS, SPLITTERS, MARGINAL_DB, TYPICAL_GPON_REACH_KM, calculate } from "./calc.js";
 import { fmt } from "./format.js";
+import { pulseVerdict } from "./animations.js";
 import "./ui.js";
 
 /** @type {HTMLFormElement} */
@@ -204,8 +205,11 @@ function update() {
   const tag = pair[0];
   const desc = pair[1];
   const verdict = $("verdict");
-  verdict.className = `card verdict v-${r.verdict}`;
+  const nextClass = `card verdict v-${r.verdict}`;
+  const classChanged = verdict.className !== nextClass;
+  verdict.className = nextClass;
   verdict.innerHTML = `<div class="tag">${tag}</div><div class="big">${fmt(r.rxMin)} dBm</div><div>Potencia RX estimada en la ONT (peor caso)</div><p class="note">${esc(desc)}</p>`;
+  if (classChanged) pulseVerdict(verdict);
   $("stats").innerHTML = [
     ["Pérdida total", fmt(r.totalLoss) + " dB"],
     ["Margen remanente", fmt(r.remaining) + " dB"],

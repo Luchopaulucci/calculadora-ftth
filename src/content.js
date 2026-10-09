@@ -283,6 +283,10 @@ function calculatorMarkup(r) {
   const reachHidden = r.exceedsTypicalReach ? "" : " hidden";
   const maxKm = Number.isFinite(r.maxDistance) ? r.maxDistance.toFixed(1) : "∞";
   return `
+<div class="calc-toolbar">
+  <button type="button" id="share" class="btn btn-primary">Copiar link</button>
+  <button type="button" id="reset" class="btn">Reiniciar</button>
+</div>
 <div class="calc-layout" id="calculadora">
 <form id="f" autocomplete="off" novalidate>
   <section class="card">

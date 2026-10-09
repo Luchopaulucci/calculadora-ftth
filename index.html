@@ -23,14 +23,15 @@
 </head>
 <body class="home">
 <a class="skip" href="#contenido">Saltar al contenido</a>
-<header>
-  <div class="brand-wrap">
-    <a class="brand" href="/">Presupuesto óptico <span>FTTH</span></a>
-    <p class="sub">Pérdidas y potencia en la ONT para redes GPON</p>
+<header class="site-header">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand-text">Presupuesto óptico </span><span>FTTH</span></a>
+    <button type="button" class="btn nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sitio-nav" aria-label="Abrir menú">
+      <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    <nav id="sitio-nav" class="sitio-nav" aria-label="Principal"><ul><li><a href="/" aria-current="page">Calculadora</a></li><li><a href="/como-calcular-presupuesto-optico">Cómo calcular</a></li><li><a href="/perdidas-tipicas">Pérdidas típicas</a></li><li><a href="/glosario-ftth-gpon">Glosario</a></li><li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li><li><a href="/acerca-de">Acerca de</a></li></ul></nav>
+    <div class="hdr-btns"><button type="button" id="theme" class="btn" aria-label="Cambiar tema" title="Cambiar tema">Tema</button></div>
   </div>
-  <button type="button" class="btn nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sitio-nav">Menú</button>
-  <nav id="sitio-nav" class="sitio-nav" aria-label="Principal"><ul><li><a href="/" aria-current="page">Calculadora</a></li><li><a href="/como-calcular-presupuesto-optico">Cómo calcular</a></li><li><a href="/perdidas-tipicas">Pérdidas típicas</a></li><li><a href="/glosario-ftth-gpon">Glosario</a></li><li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li><li><a href="/acerca-de">Acerca de</a></li></ul></nav>
-  <div class="hdr-btns"><button type="button" id="share" class="btn">🔗 Copiar link</button><button type="button" id="reset" class="btn">↺ Reiniciar</button><button type="button" id="theme" class="btn" aria-label="Cambiar tema">🌓</button></div>
 </header>
 <main id="contenido">
   
@@ -39,6 +40,10 @@
     
 <p class="lead">Esta calculadora FTTH gratuita estima la pérdida total de un enlace de fibra óptica GPON y te dice si la potencia que llega a la ONT entra en rango. Cargás la clase óptica (B+, C+ o personalizada), la distancia, la longitud de onda, los splitters PLC, los empalmes y los conectores, y te devuelve la RX en el peor caso, el nominal y el mejor caso, el margen remanente, el riesgo de saturación y la distancia máxima. Funciona en el navegador, sin registro, y podés compartir cada cálculo con un link.</p>
 
+<div class="calc-toolbar">
+  <button type="button" id="share" class="btn btn-primary">Copiar link</button>
+  <button type="button" id="reset" class="btn">Reiniciar</button>
+</div>
 <div class="calc-layout" id="calculadora">
 <form id="f" autocomplete="off" novalidate>
   <section class="card">
@@ -151,8 +156,8 @@
 </section>
   </article>
 </main>
-<footer>
-  <a href="https://lucianopaulucci.com">lucianopaulucci.com</a>
+<footer class="site-footer">
+  <p>Calculadora FTTH · presupuesto óptico GPON</p>
 </footer>
 <script type="module" src="/src/app.js"></script>
 </body>
