@@ -15,7 +15,7 @@ export function initAnimations() {
 
   const ctx = gsap.context(() => {
     const intro = gsap.utils.toArray(
-      ".site-header__bar .brand, .site-header__bar .sitio-nav, .site-header__bar .hdr-btns, main h1, main .lead, main .calc-toolbar, main .crumbs",
+      ".site-header__bar .brand, .site-header__bar .sitio-nav, .site-header__bar .hdr-btns, main .calc-toolbar, main .crumbs",
     );
 
     if (intro.length) {
@@ -27,6 +27,25 @@ export function initAnimations() {
         ease: "power3.out",
         clearProps: "transform",
       });
+    }
+
+    // LCP: nunca opacity 0 ni visibility hidden (GSAP from() las aplica al instante).
+    const lcpIntro = gsap.utils.toArray("main h1, main .lead");
+    if (lcpIntro.length) {
+      gsap.fromTo(
+        lcpIntro,
+        { y: 8, scale: 0.992, opacity: 1, visibility: "visible" },
+        {
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          visibility: "visible",
+          duration: 0.55,
+          stagger: 0.06,
+          ease: "power3.out",
+          clearProps: "transform",
+        },
+      );
     }
 
     const cards = gsap.utils.toArray(".card, .reach-warn");

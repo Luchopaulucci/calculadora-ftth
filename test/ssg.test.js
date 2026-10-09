@@ -48,6 +48,16 @@ test("HTML de cada página: lang es, title, H1, canonical, OG y nav", () => {
   }
 });
 
+test("HTML estático no oculta el H1 ni el lead de la home", () => {
+  const html = renderPage(PAGES[0]);
+  const h1 = html.match(/<h1[^>]*>/);
+  assert.ok(h1, "falta h1");
+  assert.doesNotMatch(h1[0], /opacity\s*:\s*0|visibility\s*:\s*hidden/i);
+  const lead = html.match(/<p class="lead"[^>]*>/);
+  assert.ok(lead, "falta .lead");
+  assert.doesNotMatch(lead[0], /opacity\s*:\s*0|visibility\s*:\s*hidden/i);
+});
+
 test("home trae intro, calculadora y ejemplo resuelto en HTML estático", () => {
   const html = renderPage(PAGES[0]);
   assert.match(html, /Esta calculadora FTTH gratuita estima la pérdida total/);

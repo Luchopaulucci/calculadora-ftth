@@ -314,6 +314,15 @@ h1 {
   line-height: 1.2;
 }
 
+/* LCP: visibles desde el primer paint (html.js lo setea UI antes de GSAP). */
+main h1,
+main .lead,
+html.js main h1,
+html.js main .lead {
+  opacity: 1;
+  visibility: visible;
+}
+
 h2 {
   font-size: 1.02rem;
   margin: 0 0 12px;
@@ -677,6 +686,11 @@ a:focus-visible {
 
   html {
     scroll-behavior: auto;
+  }
+
+  main h1,
+  main .lead {
+    transform: none;
   }
 }
 
