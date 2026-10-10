@@ -19,4 +19,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://lucianopaulucci.com/sitemap.xml
+Sitemap: https://calculadora-ftth.vercel.app/sitemap.xml

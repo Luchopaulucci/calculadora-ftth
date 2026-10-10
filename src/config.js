@@ -1,12 +1,10 @@
 /**
  * URL canónica del sitio (sin barra final).
  *
- * El README indica desplegar en lucianopaulucci.com (o un subdominio
- * como ftth.lucianopaulucci.com). No hay homepage en package.json ni
- * dominio confirmado en vercel.json; se usa esa URL descubierta en el
- * README y se puede sobrescribir con SITE_URL o VITE_SITE_URL.
+ * Producción: https://calculadora-ftth.vercel.app
+ * Se puede sobrescribir con SITE_URL o VITE_SITE_URL.
  */
-export const DEFAULT_SITE_URL = "https://lucianopaulucci.com";
+export const DEFAULT_SITE_URL = "https://calculadora-ftth.vercel.app";
 
 /**
  * @returns {string}

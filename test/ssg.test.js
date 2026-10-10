@@ -21,7 +21,7 @@ import { SITE_URL } from "../src/config.js";
 import { canonicalUrl, jsonLd, llmsTxt, renderPage, robotsTxt, sitemapXml } from "../src/ssg.js";
 
 test("SITE_URL canónica sin barra final", () => {
-  assert.equal(SITE_URL, "https://lucianopaulucci.com");
+  assert.equal(SITE_URL, "https://calculadora-ftth.vercel.app");
   assert.doesNotMatch(SITE_URL, /\/$/);
 });
 
