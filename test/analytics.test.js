@@ -31,3 +31,11 @@ test("todas las páginas cargan el entry JS compartido", () => {
     }
   }
 });
+
+test("Copiar link dispara track('copiar_link') sin propiedades", () => {
+  const src = readFileSync(join(root, "src/app.js"), "utf8");
+  assert.match(src, /import \{\s*track\s*\} from ["']@vercel\/analytics["']/);
+  assert.match(src, /\$\("share"\)\.addEventListener\("click"/);
+  assert.match(src, /track\(["']copiar_link["']\)/);
+  assert.doesNotMatch(src, /track\(["']copiar_link["']\s*,/);
+});
