@@ -1,3 +1,4 @@
+import { track } from "@vercel/analytics";
 import { CLASSES, WAVELENGTHS, SPLITTERS, MARGINAL_DB, TYPICAL_GPON_REACH_KM, calculate } from "./calc.js";
 import { fmt } from "./format.js";
 import { pulseVerdict } from "./animations.js";
@@ -316,6 +317,11 @@ function toast(text) {
 }
 
 $("share").addEventListener("click", () => {
+  try {
+    track("copiar_link");
+  } catch {
+    /* Hobby / script ausente: el copy sigue igual */
+  }
   copyLink();
 });
 

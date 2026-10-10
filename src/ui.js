@@ -1,4 +1,9 @@
+import { inject } from "@vercel/analytics";
+import { injectSpeedInsights } from "@vercel/speed-insights";
 import { animateNav, initAnimations } from "./animations.js";
+
+inject();
+injectSpeedInsights();
 
 /**
  * @param {string} key
