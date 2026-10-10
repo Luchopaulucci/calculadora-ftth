@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pérdidas típicas en FTTH: splitters, fibra, empalmes y conectores</title>
+<meta name="description" content="Pérdidas típicas de splitters PLC (1:2 a 1:64), fibra por longitud de onda, empalmes y conectores SC/APC, más las clases GPON B+ y C+.">
+<link rel="canonical" href="https://lucianopaulucci.com/perdidas-tipicas">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Calculadora FTTH">
+<meta property="og:title" content="Pérdidas típicas en FTTH: splitters, fibra, empalmes y conectores">
+<meta property="og:description" content="Pérdidas típicas de splitters PLC (1:2 a 1:64), fibra por longitud de onda, empalmes y conectores SC/APC, más las clases GPON B+ y C+.">
+<meta property="og:url" content="https://lucianopaulucci.com/perdidas-tipicas">
+<meta property="og:image" content="https://lucianopaulucci.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora FTTH: presupuesto óptico GPON y pérdidas de fibra">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pérdidas típicas en FTTH: splitters, fibra, empalmes y conectores">
+<meta name="twitter:description" content="Pérdidas típicas de splitters PLC (1:2 a 1:64), fibra por longitud de onda, empalmes y conectores SC/APC, más las clases GPON B+ y C+.">
+<meta name="twitter:image" content="https://lucianopaulucci.com/og.png">
+<meta name="twitter:image:alt" content="Calculadora FTTH: presupuesto óptico GPON y pérdidas de fibra">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔦%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/src/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","@id":"https://lucianopaulucci.com/#app","name":"Calculadora FTTH","url":"https://lucianopaulucci.com/","description":"Calculá gratis el presupuesto óptico de una red FTTH/GPON: pérdidas por fibra, splitters, empalmes y conectores, potencia en la ONT, margen y distancia máxima.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"es","offers":{"@type":"Offer","price":0,"priceCurrency":"USD"},"dateModified":"2026-10-09"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Pérdidas típicas en FTTH: splitters, fibra, empalmes y conectores","url":"https://lucianopaulucci.com/perdidas-tipicas","inLanguage":"es","dateModified":"2026-10-09","isPartOf":{"@id":"https://lucianopaulucci.com/#app"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://lucianopaulucci.com/"},{"@type":"ListItem","position":2,"name":"Pérdidas típicas en una red FTTH / GPON","item":"https://lucianopaulucci.com/perdidas-tipicas"}]}</script>
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;else document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}catch(e){document.documentElement.dataset.theme="dark";}})();</script>
+</head>
+<body class="subpage">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="site-header">
+  <div class="site-header__bar">
+    <a class="brand" href="/"><span class="brand-text">Presupuesto óptico </span><span>FTTH</span></a>
+    <button type="button" class="btn nav-toggle" id="navToggle" aria-expanded="false" aria-controls="sitio-nav" aria-label="Abrir menú">
+      <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+    <nav id="sitio-nav" class="sitio-nav" aria-label="Principal"><ul><li><a href="/">Calculadora</a></li><li><a href="/como-calcular-presupuesto-optico">Cómo calcular</a></li><li><a href="/perdidas-tipicas" aria-current="page">Pérdidas típicas</a></li><li><a href="/glosario-ftth-gpon">Glosario</a></li><li><a href="/preguntas-frecuentes">Preguntas frecuentes</a></li><li><a href="/acerca-de">Acerca de</a></li></ul></nav>
+    <div class="hdr-btns"><button type="button" id="theme" class="btn" aria-label="Cambiar tema" title="Cambiar tema">Tema</button></div>
+  </div>
+</header>
+<main id="contenido">
+  <nav class="crumbs" aria-label="Miga de pan"><ol><li><a href="/">Inicio</a></li><li aria-current="page">Pérdidas típicas en una red FTTH / GPON</li></ol></nav>
+  <article class="content prose">
+    <h1>Pérdidas típicas en una red FTTH / GPON</h1>
+    
+<p>Estos son los valores de referencia que usa la calculadora por defecto. Son típicos de mercado, no garantías: verificá siempre con el datasheet de cada componente y con mediciones de OTDR o power meter.</p>
+<h2>Splitters PLC</h2>
+<table>
+  <caption>Pérdida típica por relación de splitter PLC</caption>
+  <thead><tr><th>Relación</th><th>Pérdida típica</th></tr></thead>
+  <tbody><tr><td>1:2</td><td>3,7 dB</td></tr><tr><td>1:4</td><td>7,3 dB</td></tr><tr><td>1:8</td><td>10,5 dB</td></tr><tr><td>1:16</td><td>13,7 dB</td></tr><tr><td>1:32</td><td>17,1 dB</td></tr><tr><td>1:64</td><td>20,5 dB</td></tr></tbody>
+</table>
+<p>En cascada se suman: un 1:4 seguido de un 1:8 da 7,3 + 10,5 = 17,8 dB, apenas más que un 1:32 directo (17,1 dB).</p>
+<h2>Atenuación de la fibra por longitud de onda</h2>
+<table>
+  <caption>Atenuación típica de la fibra por longitud de onda</caption>
+  <thead><tr><th>Longitud de onda</th><th>Uso en GPON</th><th>Atenuación típica</th></tr></thead>
+  <tbody><tr><td>1310 nm</td><td>Subida</td><td>0,35 dB/km</td></tr><tr><td>1490 nm</td><td>Bajada</td><td>0,25 dB/km</td></tr><tr><td>1550 nm</td><td>Video RF</td><td>0,22 dB/km</td></tr></tbody>
+</table>
+<h2>Empalmes y conectores</h2>
+<table>
+  <caption>Pérdida típica de empalmes y conectores</caption>
+  <thead><tr><th>Elemento</th><th>Pérdida típica</th></tr></thead>
+  <tbody>
+    <tr><td>Empalme por fusión</td><td>0,1 dB</td></tr>
+    <tr><td>Empalme mecánico</td><td>0,5 dB</td></tr>
+    <tr><td>Conector SC/APC</td><td>0,3 dB</td></tr>
+  </tbody>
+</table>
+<h2>Clases ópticas GPON (ITU-T G.984.2)</h2>
+<table>
+  <caption>Potencias de las clases ópticas GPON B+ y C+</caption>
+  <thead><tr><th>Clase</th><th>TX OLT</th><th>Sensibilidad ONT</th><th>Saturación ONT</th></tr></thead>
+  <tbody>
+    <tr><td>B+</td><td>1,5 a 5 dBm</td><td>−27 dBm</td><td>−8 dBm</td></tr>
+    <tr><td>C+</td><td>3 a 7 dBm</td><td>−30 dBm</td><td>−8 dBm</td></tr>
+  </tbody>
+</table>
+    <p class="updated"><time datetime="2026-10-09">Última actualización: 9 de octubre de 2026</time></p>
+  </article>
+</main>
+<footer class="site-footer">
+  <p>Calculadora FTTH · presupuesto óptico GPON</p>
+</footer>
+<script type="module" src="/src/ui.js"></script>
+</body>
+</html>
