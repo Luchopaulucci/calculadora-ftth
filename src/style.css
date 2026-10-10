@@ -812,6 +812,12 @@ caption {
   margin-inline: auto;
 }
 
+.updated {
+  margin: 20px 0 0;
+  color: var(--mut);
+  font-size: 0.85rem;
+}
+
 .toast {
   position: fixed;
   bottom: 24px;

@@ -4,21 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cómo calcular el presupuesto óptico de una red FTTH (paso a paso)</title>
-<meta name="description" content="El presupuesto óptico es la diferencia entre la potencia que emite la OLT y la sensibilidad mínima de la ONT, y el enlace funciona si la suma de todas las pérdidas no la supera.">
+<meta name="description" content="Paso a paso para calcular el presupuesto óptico FTTH/GPON: clase B+ o C+, pérdidas de fibra, splitters y conectores, RX en la ONT y margen.">
 <link rel="canonical" href="https://lucianopaulucci.com/como-calcular-presupuesto-optico">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <meta property="og:site_name" content="Calculadora FTTH">
 <meta property="og:title" content="Cómo calcular el presupuesto óptico de una red FTTH (paso a paso)">
-<meta property="og:description" content="El presupuesto óptico es la diferencia entre la potencia que emite la OLT y la sensibilidad mínima de la ONT, y el enlace funciona si la suma de todas las pérdidas no la supera.">
+<meta property="og:description" content="Paso a paso para calcular el presupuesto óptico FTTH/GPON: clase B+ o C+, pérdidas de fibra, splitters y conectores, RX en la ONT y margen.">
 <meta property="og:url" content="https://lucianopaulucci.com/como-calcular-presupuesto-optico">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lucianopaulucci.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora FTTH: presupuesto óptico GPON y pérdidas de fibra">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cómo calcular el presupuesto óptico de una red FTTH (paso a paso)">
-<meta name="twitter:description" content="El presupuesto óptico es la diferencia entre la potencia que emite la OLT y la sensibilidad mínima de la ONT, y el enlace funciona si la suma de todas las pérdidas no la supera.">
+<meta name="twitter:description" content="Paso a paso para calcular el presupuesto óptico FTTH/GPON: clase B+ o C+, pérdidas de fibra, splitters y conectores, RX en la ONT y margen.">
+<meta name="twitter:image" content="https://lucianopaulucci.com/og.png">
+<meta name="twitter:image:alt" content="Calculadora FTTH: presupuesto óptico GPON y pérdidas de fibra">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔦%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="/src/style.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora FTTH","url":"https://lucianopaulucci.com/","description":"Calculá gratis el presupuesto óptico de una red FTTH/GPON: pérdidas por fibra, splitters, empalmes y conectores, potencia en la ONT, margen y distancia máxima.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"es","offers":{"@type":"Offer","price":0,"priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","@id":"https://lucianopaulucci.com/#app","name":"Calculadora FTTH","url":"https://lucianopaulucci.com/","description":"Calculá gratis el presupuesto óptico de una red FTTH/GPON: pérdidas por fibra, splitters, empalmes y conectores, potencia en la ONT, margen y distancia máxima.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"es","offers":{"@type":"Offer","price":0,"priceCurrency":"USD"},"dateModified":"2026-10-09"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Cómo calcular el presupuesto óptico de una red FTTH (paso a paso)","url":"https://lucianopaulucci.com/como-calcular-presupuesto-optico","inLanguage":"es","dateModified":"2026-10-09","isPartOf":{"@id":"https://lucianopaulucci.com/#app"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://lucianopaulucci.com/"},{"@type":"ListItem","position":2,"name":"Cómo calcular el presupuesto óptico de una red FTTH","item":"https://lucianopaulucci.com/como-calcular-presupuesto-optico"}]}</script>
 <script>(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;else document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}catch(e){document.documentElement.dataset.theme="dark";}})();</script>
 </head>
@@ -52,6 +59,7 @@
   <li><strong>Margen a saturación</strong> = saturación − RX mejor caso. Si da negativo, la ONT puede saturarse en enlaces cortos, y conviene agregar un atenuador.</li>
 </ul>
 <p>Mirá el <a href="/#ejemplo-resuelto">ejemplo resuelto</a> y usá la <a href="/#calculadora">calculadora</a> con tus datos.</p>
+    <p class="updated"><time datetime="2026-10-09">Última actualización: 9 de octubre de 2026</time></p>
   </article>
 </main>
 <footer class="site-footer">

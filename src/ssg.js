@@ -1,5 +1,18 @@
 import { SITE_URL } from "./config.js";
-import { FAQ_ITEMS, HOME, PAGES, SITE_NAME, defaultResult, pageBody } from "./content.js";
+import {
+  DATE_MODIFIED,
+  FAQ_ITEMS,
+  HOME,
+  OG_IMAGE_ALT,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_PATH,
+  OG_IMAGE_WIDTH,
+  PAGES,
+  SITE_NAME,
+  defaultResult,
+  formatUpdatedLabel,
+  pageBody,
+} from "./content.js";
 
 const THEME_BOOT = `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t;else document.documentElement.dataset.theme=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}catch(e){document.documentElement.dataset.theme="dark";}})();`;
 
@@ -24,6 +37,7 @@ function webAppLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
+    "@id": SITE_URL + "/#app",
     name: SITE_NAME,
     url: SITE_URL + "/",
     description: HOME.description,
@@ -31,6 +45,22 @@ function webAppLd() {
     operatingSystem: "Any",
     inLanguage: "es",
     offers: { "@type": "Offer", price: 0, priceCurrency: "USD" },
+    dateModified: DATE_MODIFIED,
+  };
+}
+
+/**
+ * @param {import("./content.js").PageMeta} page
+ */
+function webPageLd(page) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: page.title,
+    url: canonicalUrl(page.path),
+    inLanguage: "es",
+    dateModified: DATE_MODIFIED,
+    isPartOf: { "@id": SITE_URL + "/#app" },
   };
 }
 
@@ -85,7 +115,7 @@ function crumbsHtml(page) {
  */
 function jsonLdBlocks(page) {
   /** @type {unknown[]} */
-  const blocks = [webAppLd()];
+  const blocks = [webAppLd(), webPageLd(page)];
   if (page.path !== "/") blocks.push(breadcrumbLd(page));
   if (page.path === "/preguntas-frecuentes") blocks.push(faqLd());
   return blocks.map((b) => `<script type="application/ld+json">${jsonLd(b)}</script>`).join("\n");
@@ -131,9 +161,15 @@ export function renderPage(page, opts = {}) {
 <meta property="og:title" content="${escapeAttr(page.title)}">
 <meta property="og:description" content="${escapeAttr(page.description)}">
 <meta property="og:url" content="${url}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="${SITE_URL}${OG_IMAGE_PATH}">
+<meta property="og:image:width" content="${OG_IMAGE_WIDTH}">
+<meta property="og:image:height" content="${OG_IMAGE_HEIGHT}">
+<meta property="og:image:alt" content="${escapeAttr(OG_IMAGE_ALT)}">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${escapeAttr(page.title)}">
 <meta name="twitter:description" content="${escapeAttr(page.description)}">
+<meta name="twitter:image" content="${SITE_URL}${OG_IMAGE_PATH}">
+<meta name="twitter:image:alt" content="${escapeAttr(OG_IMAGE_ALT)}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🔦%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="/src/style.css">
 ${jsonLdBlocks(page)}
@@ -156,6 +192,7 @@ ${jsonLdBlocks(page)}
   <article class="${articleClass}">
     <h1>${escapeHtml(page.h1)}</h1>
     ${pageBody(page.path, example)}
+    <p class="updated"><time datetime="${DATE_MODIFIED}">${formatUpdatedLabel()}</time></p>
   </article>
 </main>
 <footer class="site-footer">
@@ -182,11 +219,10 @@ export function robotsTxt() {
  * @returns {string}
  */
 export function sitemapXml() {
-  const today = new Date().toISOString().slice(0, 10);
   const urls = PAGES.map((p) => {
     const loc = canonicalUrl(p.path);
     const pri = p.path === "/" ? "1.0" : "0.8";
-    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${pri}</priority>\n  </url>`;
+    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${DATE_MODIFIED}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${pri}</priority>\n  </url>`;
   }).join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

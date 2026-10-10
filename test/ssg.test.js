@@ -1,6 +1,21 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { FAQ_ITEMS, PAGES, SEO_EXAMPLE, defaultResult, workedExampleTable } from "../src/content.js";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import {
+  DATE_MODIFIED,
+  FAQ_ITEMS,
+  OG_IMAGE_ALT,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_PATH,
+  OG_IMAGE_WIDTH,
+  PAGES,
+  SEO_EXAMPLE,
+  defaultResult,
+  formatUpdatedLabel,
+  workedExampleTable,
+} from "../src/content.js";
 import { fmtEs } from "../src/format.js";
 import { SITE_URL } from "../src/config.js";
 import { canonicalUrl, jsonLd, llmsTxt, renderPage, robotsTxt, sitemapXml } from "../src/ssg.js";
@@ -32,7 +47,13 @@ test("HTML de cada página: lang es, title, H1, canonical, OG y nav", () => {
     assert.ok(html.includes(`<h1>${page.h1}</h1>`), page.h1);
     assert.match(html, new RegExp(`<link rel="canonical" href="${canonicalUrl(page.path)}">`));
     assert.match(html, /property="og:title"/);
-    assert.match(html, /name="twitter:card"/);
+    assert.match(html, /name="twitter:card" content="summary_large_image"/);
+    assert.ok(html.includes(`<meta property="og:image" content="${SITE_URL}${OG_IMAGE_PATH}">`));
+    assert.ok(html.includes(`<meta property="og:image:width" content="${OG_IMAGE_WIDTH}">`));
+    assert.ok(html.includes(`<meta property="og:image:height" content="${OG_IMAGE_HEIGHT}">`));
+    assert.ok(html.includes(`<meta property="og:image:alt" content="${OG_IMAGE_ALT}">`));
+    assert.ok(html.includes(`<time datetime="${DATE_MODIFIED}">${formatUpdatedLabel()}</time>`));
+    assert.match(html, /"dateModified":"2026-10-09"/);
     assert.match(html, /WebApplication/);
     assert.match(html, /applicationCategory/);
     assert.match(html, /"price":0/);
@@ -67,6 +88,31 @@ test("home trae intro, calculadora y ejemplo resuelto en HTML estático", () => 
   assert.match(html, /−22,1 dBm/);
   assert.match(html, /4,9 dB de margen remanente/);
   assert.match(html, /alcance físico típico de GPON \(20 km\)/);
+  assert.match(
+    html,
+    /También se lo conoce como cálculo de link budget, balance de potencia óptica o cálculo de pérdidas en fibra óptica/,
+  );
+});
+
+test("meta description de /como-calcular-presupuesto-optico", () => {
+  const desc =
+    "Paso a paso para calcular el presupuesto óptico FTTH/GPON: clase B+ o C+, pérdidas de fibra, splitters y conectores, RX en la ONT y margen.";
+  const page = pageByPath("/como-calcular-presupuesto-optico");
+  assert.equal(page.description, desc);
+  const html = renderPage(page);
+  assert.ok(html.includes(`<meta name="description" content="${desc}">`));
+  assert.ok(html.includes(`<meta property="og:description" content="${desc}">`));
+  assert.ok(html.includes(`<meta name="twitter:description" content="${desc}">`));
+});
+
+test("title de /acerca-de", () => {
+  const title = "Acerca de la Calculadora FTTH gratuita en español";
+  const page = pageByPath("/acerca-de");
+  assert.equal(page.title, title);
+  const html = renderPage(page);
+  assert.ok(html.includes(`<title>${title}</title>`));
+  assert.ok(html.includes(`<meta property="og:title" content="${title}">`));
+  assert.ok(html.includes(`<meta name="twitter:title" content="${title}">`));
 });
 
 /** @param {string} path */
@@ -119,6 +165,17 @@ test("sitemap y llms.txt listan todas las páginas", () => {
     assert.ok(sm.includes(canonicalUrl(page.path)), page.path);
     assert.ok(llms.includes(canonicalUrl(page.path)), page.path);
   }
+});
+
+test("og.png es 1200×630", () => {
+  const png = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "..", "public", "og.png"));
+  assert.equal(png[1], 0x50);
+  assert.equal(png[2], 0x4e);
+  assert.equal(png[3], 0x47);
+  const width = png.readUInt32BE(16);
+  const height = png.readUInt32BE(20);
+  assert.equal(width, 1200);
+  assert.equal(height, 630);
 });
 
 test("jsonLd escapa <", () => {

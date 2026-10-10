@@ -5,6 +5,42 @@ import { fmtEs } from "./format.js";
 
 export const SITE_NAME = "Calculadora FTTH";
 
+/** Fecha de última actualización (ISO), única para todo el sitio. */
+export const DATE_MODIFIED = "2026-10-09";
+
+export const OG_IMAGE_PATH = "/og.png";
+export const OG_IMAGE_ALT = "Calculadora FTTH: presupuesto óptico GPON y pérdidas de fibra";
+export const OG_IMAGE_WIDTH = 1200;
+export const OG_IMAGE_HEIGHT = 630;
+
+const MONTHS_ES = [
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre",
+];
+
+/**
+ * @param {string} [iso]
+ * @returns {string}
+ */
+export function formatUpdatedLabel(iso = DATE_MODIFIED) {
+  const parts = iso.split("-").map(Number);
+  const y = parts[0];
+  const m = parts[1];
+  const d = parts[2];
+  if (!y || !m || !d) return `Última actualización: ${iso}`;
+  return `Última actualización: ${d} de ${MONTHS_ES[m - 1]} de ${y}`;
+}
+
 export const FAQ_ITEMS = [
   {
     q: "¿Qué potencia tiene que llegar a la ONT en GPON?",
@@ -67,7 +103,7 @@ export const PAGES = [
     path: "/como-calcular-presupuesto-optico",
     title: "Cómo calcular el presupuesto óptico de una red FTTH (paso a paso)",
     description:
-      "El presupuesto óptico es la diferencia entre la potencia que emite la OLT y la sensibilidad mínima de la ONT, y el enlace funciona si la suma de todas las pérdidas no la supera.",
+      "Paso a paso para calcular el presupuesto óptico FTTH/GPON: clase B+ o C+, pérdidas de fibra, splitters y conectores, RX en la ONT y margen.",
     h1: "Cómo calcular el presupuesto óptico de una red FTTH",
     navLabel: "Cómo calcular",
   },
@@ -97,7 +133,7 @@ export const PAGES = [
   },
   {
     path: "/acerca-de",
-    title: "Acerca de la Calculadora FTTH",
+    title: "Acerca de la Calculadora FTTH gratuita en español",
     description:
       "La Calculadora FTTH es una herramienta gratuita en español para estimar el presupuesto óptico de redes GPON, pensada para técnicos, instaladores, ISP y estudiantes.",
     h1: "Acerca de esta calculadora",
@@ -161,7 +197,7 @@ const GLOSSARY = [
 export function pageBody(path, example) {
   if (path === "/") {
     return `
-<p class="lead">Esta calculadora FTTH gratuita estima la pérdida total de un enlace de fibra óptica GPON y te dice si la potencia que llega a la ONT entra en rango. Cargás la clase óptica (B+, C+ o personalizada), la distancia, la longitud de onda, los splitters PLC, los empalmes y los conectores, y te devuelve la RX en el peor caso, el nominal y el mejor caso, el margen remanente, el riesgo de saturación y la distancia máxima. Funciona en el navegador, sin registro, y podés compartir cada cálculo con un link.</p>
+<p class="lead">Esta calculadora FTTH gratuita estima la pérdida total de un enlace de fibra óptica GPON y te dice si la potencia que llega a la ONT entra en rango. Cargás la clase óptica (B+, C+ o personalizada), la distancia, la longitud de onda, los splitters PLC, los empalmes y los conectores, y te devuelve la RX en el peor caso, el nominal y el mejor caso, el margen remanente, el riesgo de saturación y la distancia máxima. Funciona en el navegador, sin registro, y podés compartir cada cálculo con un link. También se lo conoce como cálculo de link budget, balance de potencia óptica o cálculo de pérdidas en fibra óptica.</p>
 ${calculatorMarkup(example)}
 <section class="card prose" id="ejemplo-resuelto">
   <h2>Ejemplo resuelto</h2>
