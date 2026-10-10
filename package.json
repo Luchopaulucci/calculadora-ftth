@@ -9,6 +9,7 @@
     "dev": "vite",
     "prebuild": "node scripts/render-pages.mjs",
     "build": "vite build",
+    "postbuild": "node scripts/verify-analytics-dist.mjs",
     "start": "vite preview --host --port 5173",
     "test": "node --test test/*.test.js",
     "lint": "eslint src test scripts vite.config.js eslint.config.js",
